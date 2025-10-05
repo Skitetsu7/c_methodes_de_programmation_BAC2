@@ -37,7 +37,7 @@ void pair_impaire(int x){
 }
 
 // Exo 4
-void croissant() {
+void recherche_min_max() {
     int n, min, max;
     int premier = 1;  // drapeau pour la première saisie
 
@@ -85,6 +85,67 @@ void diviseurs() {
     printf("\n");
 }
 
+// Exo 6
+void division_entieres(int x, int y){
+    int n=0; 
+    int reste = x;
+    while (reste>=y){
+        reste -= y;
+        n++; // est le quotient en sortie
+    }
+    printf("Le quotient de %d par la division entière de %d est %d\n",x,y, n-1);
+    printf("Le reste de la division entière est %d\n", reste);
+}
+// Exo 7
+void multiple(int x, int y) {
+    int resultat = 0;
+
+    while (y > 0) {
+        if (y % 2 == 1) {
+            // si y impair, on ajoute x au résultat
+            resultat += x;
+            y--;   // on réduit y de 1
+            printf("= %d * %d + %d\n", x, y, resultat - x);
+        } else {
+            // si y pair, on double x et on divise y par 2
+            x = 2 * x;
+            y = y / 2;
+            printf("= %d * %d + %d\n", x, y, resultat);
+        }
+    }
+
+    printf("Résultat final = %d\n", resultat);
+}
+
+//Exo 8
+void calculatrice(int x, int y){
+    char op;
+    printf("Entrez une opération (+, -, *, /) : ");
+    scanf(" %c", &op);
+
+    switch (op) {
+        case '+':
+            printf("%d + %d = %d\n", x, y, x + y);
+            break;
+        case '-':
+            printf("%d - %d = %d\n", x, y, x - y);
+            break;
+        case '*':
+            printf("%d * %d = %d\n", x, y, x * y);
+            break;
+        case '/':
+            if (y != 0) {
+                printf("%d / %d = %d\n", x, y, x / y);
+            } else {
+                printf("Erreur : division par zéro.\n");
+            }
+            break;
+        default:
+            printf("Opération invalide.\n");
+            break;
+    }
+}
+
 int main() {
     int choix;
     int x, y;
@@ -96,6 +157,9 @@ int main() {
         printf("3. Tester si un entier est pair ou impair\n");
         printf("4. Lire une suite d'entiers et afficher le min et le max\n");
         printf("5. Afficher les diviseurs d'un entier\n");
+        printf("6. Division entière de deux entiers\n");
+        printf("7. Multiplication de deux entiers par additions successives\n");
+        printf("8. Calculatrice simple\n");
         printf("0. Quitter\n");
         printf("Votre choix : ");
         scanf("%d", &choix);
@@ -115,10 +179,22 @@ int main() {
                 pair_impaire(x);
                 break;
             case 4:
-                croissant();
+                recherche_min_max();
                 break;
             case 5:
                 diviseurs();
+                break;
+            case 6:
+                saisie(&x, &y);
+                division_entieres(x, y);
+                break;
+            case 7:
+                saisie(&x, &y);
+                multiple(x, y);
+                break;
+            case 8:
+                saisie(&x, &y);
+                calculatrice(x, y);
                 break;
             case 0:
                 printf("Fin du programme.\n");
@@ -129,3 +205,6 @@ int main() {
         }
     }
 }
+
+
+
